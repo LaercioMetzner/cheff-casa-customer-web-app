@@ -1,0 +1,96 @@
+<!--  
+ * cheff.casa is a platform that aims to cover all the business process
+ * involved in operating a restaurant or a food delivery service. 
+ *
+ * Copyright (C) 2018  Laercio Metzner
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.  
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * For more information please visit http://cheff.casa
+ * or mail us via our e-mail contato@cheff.casa
+ * or even mail-me via my own personal e-mail laercio.metzner@gmail.com 
+ * 
+ -->
+ <div layout="column">
+
+      <!-- Código do Parceiro -->
+      <md-input-container ng-hide="{{!isUpdate}}">
+        <label for="codParceiro">Código do Parceiro</label>
+        <input type="number" ng-model="parceiro.codParceiro" id="codParceiro" name="codParceiro" maxlength="5" disabled>
+      </md-input-container>
+
+      <!-- e-mail do Parceiro -->
+      <md-input-container>
+        <label for="desEmail">e-mail</label>
+        <input type="email" ng-model="parceiro.desEmail" id="desEmail" name="desEmail" maxlength="100" required>
+      </md-input-container>
+
+      <!-- Nome do Parceiro -->
+      <md-input-container>
+        <label for="nomParceiro">Nome</label>
+        <input type="text" ng-model="parceiro.nomParceiro" id="nomParceiro" name="nomParceiro" maxlength="45" required>
+      </md-input-container>
+
+      <!-- CPF ou CNPJ -->
+      <md-input-container>
+        <label for="numCpfCnpj">CPF ou CNPJ</label>
+        <input type="text" ng-model="parceiro.numCpfCnpj" id="numCpfCnpj" name="numCpfCnpj" maxlength="18" onKeyPress="MascaraCPFouCNPJ(this);" maxlength="18" required>
+      </md-input-container>
+
+      <!-- Endereço -->
+      <md-input-container ng-hide="{{!isUpdate}}">
+        <label for="desEndereco">Endereço</label>
+        <input type="text" ng-model="parceiro.desEndereco" id="desEndereco" name="desEndereco" maxlength="100">
+      </md-input-container>
+
+      <!-- Complemento -->
+      <md-input-container ng-hide="{{!isUpdate}}">
+        <label for="desComplemento">Complemento</label>
+        <input type="text" ng-model="parceiro.desComplemento" id="desComplemento" name="desComplemento" maxlength="100">
+      </md-input-container>
+
+      <!-- Bairro -->
+      <md-input-container ng-hide="{{!isUpdate}}">
+        <label for="desBairro">Bairro</label>
+        <input type="text" ng-model="parceiro.desBairro" id="desBairro" name="desBairro" maxlength="45">
+      </md-input-container>
+
+      <!-- Cidade -->
+      <md-input-container ng-hide="{{!isUpdate}}">
+        <label for="nomCidade">Cidade</label>
+        <input type="text" ng-model="parceiro.nomCidade" id="nomCidade" name="nomCidade" maxlength="45">
+      </md-input-container>
+
+      <!-- Alterar Senha -->
+      <div style="text-align:center; vertical-align:middle">
+          <md-checkbox ng-model="alteraSenha" id="alteraSenha" name="alteraSenha" ng-true-value="'S'" ng-false-value="'N'" ng-disabled="{{!isUpdate}}">
+          Alterar Senha
+          </md-checkbox>
+      </div>
+
+      <!-- Senha -->
+      <md-input-container>
+        <label for="desSenha">Senha</label>
+        <input type="password" name="desSenha" id="desSenha" class="form-control" ng-model="parceiro.desSenha" ng-disabled="{{'alteraSenha==\'N\''}}">
+      </md-input-container>
+
+      <!-- Repetir Senha -->
+      <md-input-container>
+        <label for="repSenha">Repita a Senha</label>
+        <input type="password" name="repSenha" id="repSenha" class="form-control" ng-model="repSenha" ng-disabled="{{'alteraSenha==\'N\''}}">
+      </md-input-container>
+
+      <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="save()">
+        <ng-md-icon icon="save"></ng-md-icon>
+      </md-button>
+</div>

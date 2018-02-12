@@ -1,0 +1,328 @@
+<!--  
+ * cheff.casa is a platform that aims to cover all the business process
+ * involved in operating a restaurant or a food delivery service. 
+ *
+ * Copyright (C) 2018  Laercio Metzner
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.  
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * For more information please visit http://cheff.casa
+ * or mail us via our e-mail contato@cheff.casa
+ * or even mail-me via my own personal e-mail laercio.metzner@gmail.com 
+ * 
+ -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Estabelecimento</h1>
+                    <ul class="nav navbar-top-links">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-link fa-fw"></i> Links
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#/listCardapios/{{estabelecimento.codEstabelecimento}}"><i class="material-icons">local_restaurant</i> Cardápios</a>
+                                </li>
+                                <li><a href="#/listTamanhos/{{estabelecimento.codEstabelecimento}}"><i class="material-icons">format_size</i> Tamanhos</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+        </div>
+        <!-- /.col-lg-12 -->
+
+    </div>
+    <!-- /.row -->
+    
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{isUpdate ? 'Editar' : 'Inserir'}} Estabelecimento
+                </div>
+                <div class="panel-body">
+                    <form role="form" ng-submit="save()">
+                        <div class="row">
+                            <div class="col-lg-6">
+
+                                <!-- Código do Estabelecimento -->
+                                <div class="form-group" ng-hide="{{!isUpdate}}">
+                                    <label>Código do Estabelecimento</label>
+                                    <input type="number" id="codEstabelecimento" name="codEstabelecimento" class="form-control" ng-model="estabelecimento.codEstabelecimento" maxlength="5" disabled>
+                                </div>
+
+                                <!-- Nome do Estabelecimento -->
+                                <div class="form-group">
+                                    <label>Nome do Estabelecimento</label>
+                                    <input type="text" id="nomEstabelecimento" name="nomEstabelecimento" class="form-control" ng-model="estabelecimento.nomEstabelecimento" maxlength="45" required>
+                                </div>
+  
+                                <!-- CNPJ -->
+                                <div class="form-group">
+                                    <label>CNPJ</label>
+                                    <input type="text" class="form-control" maxlength="18" id="numCnpj" name="numCnpj"  ng-model="estabelecimento.numCnpj" onKeyPress="MascaraCNPJ(this);" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+
+                                <!-- Descrição do estabelecimento -->
+                                <div class="form-group">
+                                    <label>Descrição</label>
+                                    <textarea class="form-control" rows="3" ng-model="estabelecimento.desEstabelecimento" id="desEstabelecimento" name="desEstabelecimento" maxlength="200"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-6">
+
+                                <!-- Logotipo  -->
+                                <div  class="form-group" ng-controller="myCtrl" ng-init="init('codPhotoIdLogotipo', 2)">
+                                    <label for="logotipo">Logotipo</label>
+                                    <div ng-hide="imgSrc">
+                                        <input id="logotipo" name="logotipo" type="file" file-model="myFile" onchange="angular.element(this).scope().uploadFile(this);"> 
+                                    </div>
+                                    <div ng-hide="!imgSrc">
+                                        <img ng-src="{{imgSrc}}">
+                                        <input type="button" value="Trocar" ng-click="replace()" class="btn btn-default">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <!-- Capa  -->
+                                <div ng-controller="myCtrl" class="form-group" ng-init="init('codPhotoIdCapa', 2)">
+                                    <label for="capa">Capa</label>
+                                    <div ng-hide="imgSrc">
+                                        <input id="capa" name="capa" type="file" file-model="myFile" onchange="angular.element(this).scope().uploadFile(this);"> 
+                                    </div>
+                                    <div ng-hide="!imgSrc">
+                                        <img ng-src="{{imgSrc}}">
+                                        <input type="button" value="Trocar" ng-click="replace()" class="btn btn-default">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <!-- Fone 1 -->
+                                <div class="form-group">
+                                    <label>Telefone para pedidos</label>
+                                    <input type="text" class="form-control" ng-model="estabelecimento.numFone1" id="numFone1" name="numFone1" onKeyPress="MascaraTelefone(this);" maxlength="14" required>
+                                </div>
+                                
+                                <!-- Fone 2 -->
+                                <div class="form-group">
+                                    <label>Telefone para contato</label>
+                                    <input type="text" class="form-control" ng-model="estabelecimento.numFone2" id="numFone2" name="numFone2" onKeyPress="MascaraTelefone(this);" maxlength="14">
+                                </div>
+
+                                <!-- Nome da pessoa para contato -->
+                                <div class="form-group">
+                                    <label>Pessoa para contato</label>
+                                    <input type="text" class="form-control" ng-model="estabelecimento.nomPessoaContato" id="nomPessoaContato" name="nomPessoaContato" maxlength="45" required>
+                                </div>
+          
+                                <!-- e-mail -->
+                                <div class="form-group">
+                                    <label>E-mail</label>
+                                    <input class="form-control" type="email" ng-model="estabelecimento.desEmail" id="desEmail" name="desEmail" maxlength="100" required>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6">
+
+                                <!-- Endereço -->
+                                <div class="form-group">
+                                    <label>Endereço</label>
+                                    <input type="text" class="form-control" ng-model="estabelecimento.desEndereco" id="desEndereco" name="desEndereco" maxlength="100" required>
+                                </div>
+
+                                <!-- Complemento -->
+                                <div class="form-group">
+                                    <label>Complemento</label>
+                                    <input type="text" class="form-control" ng-model="estabelecimento.desComplemento" id="desComplemento" name="desComplemento" maxlength="100">
+                                </div>
+
+                                <!-- Bairro -->
+                                <div class="form-group">
+                                    <label>Bairro</label>
+                                    <input type="text" class="form-control" ng-model="estabelecimento.desBairro" id="desBairro" name="desBairro" maxlength="45" required>
+                                </div>
+
+                                <!-- Cidade -->
+                                <div class="form-group">
+                                    <label>Cidade</label>
+                                    <input type="text" class="form-control" ng-model="estabelecimento.nomCidade" id="nomCidade" name="nomCidade" maxlength="45" required>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-6">
+
+                                <!-- Valor da Entrega -->
+                                <div class="form-group">
+                                    <label>Valor da Entrega</label>
+                                    <input type="number" class="form-control" ng-model="estabelecimento.valEntrega" id="valEntrega" name="valEntrega" maxlength="5" required>
+                                </div>
+
+                                <!-- Forma de Pagamento -->  
+                                <div class="form-group">
+                                    <label>Forma de Pagamento</label>
+                                    <select class="form-control" ng-model="estabelecimento.indFormaPgto" id="indFormaPgto" name="indFormaPgto">
+                                        <option value="1">Boleto</option>
+                                        <option value="2">Transferência</option>
+                                    </select>
+                                </div>
+
+                                <!-- Valor da Mensalidade -->
+                                <div class="form-group">
+                                    <label>Valor da Mensalidade</label>
+                                    <input class="form-control" ng-model="estabelecimento.valMensalidade" id="valMensalidade" name="valMensalidade" maxlength="5" required>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6">
+
+                                <!-- Banco -->
+                                <div class="form-group">
+                                    <label>Banco</label>
+                                    <input type="text" class="form-control" ng-model="estabelecimento.numBanco" id="numBanco" name="numBanco" maxlength="10">
+                                </div>
+
+                                <!-- Agência -->
+                                <div class="form-group">
+                                    <label>Agência</label>
+                                    <input type="text" class="form-control" ng-model="estabelecimento.numAgencia" id="numAgencia" name="numAgencia" maxlength="10">
+                                </div>
+
+                                <!-- Conta e  Dígito Verificador -->
+                                <div class="form-group">
+                                    <label>Conta/DV</label>
+                                    <input type="text" class="form-control" ng-model="estabelecimento.numContaDv" id="numContaDv" name="numContaDv" maxlength="20">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-6">
+
+                                <!-- Latitude -->
+                                <div class="form-group">
+                                    <label>Latitude</label>
+                                    <input class="form-control" type="number" ng-model="estabelecimento.latEstabelecimento" id="latEstabelecimento" name="latEstabelecimento" maxlength="20" step="0.000001">
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6">
+
+                                <!-- Longitude -->
+                                <div class="form-group">
+                                    <label>Longitude</label>
+                                    <input class="form-control" type="number" ng-model="estabelecimento.lonEstabelecimento" id="lonEstabelecimento" name="lonEstabelecimento" maxlength="20" step="0.000001">
+                                </div>
+
+                                <!-- Maxima Distância do Raio -->
+                                <div class="form-group">
+                                    <label>Distância Máxima (Raio km)</label>
+                                    <input class="form-control"  type="number" ng-model="estabelecimento.maxDistanciaRaio" id="maxDistanciaRaio" name="maxDistanciaRaio" maxlength="3">
+                                </div>
+
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-6">
+
+
+                                <!-- Facebook -->
+                                <div class="form-group">
+                                    <label>Facebook</label>
+                                    <input class="form-control" type="text" ng-model="estabelecimento.urlFacebook" id="urlFacebook" name="urlFacebook" maxlength="300">
+                                </div>
+
+                                <!-- Instagram -->
+                                <div class="form-group">
+                                    <label>Instagram</label>
+                                    <input class="form-control" ng-model="estabelecimento.urlInstagram" id="urlInstagram" name="urlInstagram" maxlength="300">
+                                </div>
+
+                                <!-- WhatsApp -->
+                                <div class="form-group">
+                                    <label>WhatsApp</label>
+                                    <input class="form-control" type="text" ng-model="estabelecimento.numWhatsapp" id="numWhatsApp" name="numWhatsApp" onKeyPress="MascaraWhatsapp(this);" maxlength="17" required>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6">
+
+                                <!-- Observação -->
+                                <div class="form-group">
+                                    <label>Observação</label>
+                                    <textarea class="form-control" ng-model="estabelecimento.obsEstabelecimento" id="obsEstabelecimento" name="obsEstabelecimento" rows="5" maxlength="1000"></textarea>
+                                </div>
+
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-6">
+
+                                <!-- Ativo -->
+                                <div class="form-group">
+                                    <label>Ativo</label>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="estabelecimento.indAtivo" id="indAtivo" name="indAtivo" ng-true-value="'S'" ng-false-value="'N'">Ativo
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-6">
+                         
+
+                                <button type="submit" class="btn btn-default">Salvar</button>
+
+                            </div>
+                        </div>
+                        <!-- /.row (nested) -->
+                    </form>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+
+
+
+
+
+
+
+    <form ng-submit="save()" layout="column">   
+
+  
+          <md-button type="submit" class="md-fab md-fab-bottom-right" aria-label="Add">
+            <ng-md-icon icon="save"></ng-md-icon>
+          </md-button>
+    </form>
+
