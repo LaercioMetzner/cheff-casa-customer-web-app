@@ -1,0 +1,360 @@
+<!--  
+ * cheff.casa is a platform that aims to cover all the business process
+ * involved in operating a restaurant or a food delivery service. 
+ *
+ * Copyright (C) 2018  Laercio Metzner
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.  
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * For more information please visit http://cheff.casa
+ * or mail us via our e-mail contato@cheff.casa
+ * or even mail-me via my own personal e-mail laercio.metzner@gmail.com 
+ * 
+ -->
+<!DOCTYPE html>
+<html lang="en" ng-app="jFood">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>cheff.casa</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="../css/app-style.css">
+    <!-- jQuery 
+    <script src="../vendor/jquery/jquery.min.js" defer></script> -->
+
+    <!-- Bootstrap Core JavaScript 
+    <script src="../vendor/bootstrap/js/bootstrap.min.js" defer></script> -->
+
+    <!-- Metis Menu Plugin JavaScript 
+    <script src="../vendor/metisMenu/metisMenu.min.js" defer></script> -->
+
+    <!-- Morris Charts JavaScript -->
+    <!--
+    <script src="../vendor/raphael/raphael.min.js"></script>
+    <script src="../vendor/morrisjs/morris.min.js"></script>
+    <script src="../data/morris-data.js"></script>
+    -->
+
+    <!-- Custom Theme JavaScript 
+    <script src="../dist/js/sb-admin-2.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-route.js" defer></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.js" defer></script>
+    <script src="../js/angular-base64.js" defer></script>
+    <script src="../js/md5.min.js" defer></script>
+    <script src="../js/services.js" defer></script>
+    <script src="../js/controllers.js" defer></script>
+    <script src="../js/app.js" defer></script>
+    <script src="../js/mascaraValidacao.js" defer></script>
+    -->
+
+</head>
+
+<body ng-controller="mainController" class="styled">
+
+    <div id="wrapper" hidden>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0" id="top-nav-bar">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">cheff.casa</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right" style="float: right;" ng-hide="!loggedIn">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-comment fa-fw"></i> New Comment
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-tasks fa-fw"></i> New Task
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>See All Alerts</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a><i class="fa fa-user fa-fw"></i> {{userName}}</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configurações</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a ng-click="logout()"><i class="fa fa-sign-out fa-fw"></i> Sair</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="navbar-default sidebar" style="clear: right;" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu" ng-hide="loggedIn">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" ng-model="email" class="form-control" placeholder="E-mail">
+                            </div>
+                        </li>
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="password" ng-model="password" class="form-control" placeholder="Senha">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" ng-click="signin()">
+                                    <i class="fa fa-arrow-right"></i>
+                                </button>
+                            </span>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="nav" id="side-menu" ng-hide="!loggedIn">
+                        <li class="sidebar-search">
+                            <div class="form-group">
+                                <label>Usuário</label>
+                                <p class="form-control-static">{{userName}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Estabelecimento</label>
+                                <select class="form-control" ng-model="estabelecimento" ng-options="e as e.nomEstabelecimento for e in estabelecimentos" id="estabelecimento" name="estabelecimento">
+                                </select>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="nav" id="side-menu" ng-hide="!loggedIn">
+                        <li ng-click="showMenuPage(menu.link)" ng-repeat="menu in menus">
+                            <a data-toggle="collapse" data-target=".navbar-collapse.in"><!--<i class="fa fa-dashboard fa-fw"> </i>--><i class="material-icons">{{menu.icon}}</i> {{menu.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" ng-view>
+        </div>
+        <!-- /#page-wrapper -->
+
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Termos de Licença
+                    </div>
+                    <div class="panel-body">
+                        <p>Este software é distribuído sob os termos da liçença <a target="_blank" href="https://github.com/LaercioMetzner/cheff-casa-customer-web-app/blob/master/LICENSE#L5">GNU General Public License<a></a></p>
+                        <p>2018 - Laercio Metzner</p>
+                        <p>Todos os direitos reservados</p>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+
+
+    </div>
+    <!-- /#wrapper -->
+
+
+    <!-- /.panel-heading -->
+    <div class="panel-body">
+        <!-- Button trigger modal -->
+        <button id="showModal" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="display: none">
+            Launch Demo Modal
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">{{modal.title}}</h4>
+                    </div>
+                    <div class="modal-body">{{modal.msg}}</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="modal.afterClick()">Ok</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+    </div>
+    <!-- .panel-body -->
+
+
+    <!-- jQuery
+    <script src="../vendor/jquery/jquery.min.js" defer></script> -->
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+
+    <!-- Bootstrap Core JavaScript 
+    <script src="../vendor/bootstrap/js/bootstrap.min.js" defer></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+
+    <!-- Custom Theme JavaScript 
+    <script src="../dist/js/sb-admin-2.js" defer></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-route.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.js"></script>
+
+    <!-- Coisas que nao organizei -->
+    <script src="../js/angular-base64.js"></script>
+    <script src="../js/md5.min.js"></script>
+    <script src="../js/services.js"></script>
+    <script src="../js/controllers.js"></script>
+
+    <!-- Ordens de Entrada -->
+    <script src="../js/ordem-entrada/OrdemEntradaService.js"></script>
+    <script src="../js/ordem-entrada/listOrdensEntradaController.js"></script>
+    <script src="../js/ordem-entrada/editOrdemEntradaController.js"></script>
+
+    <!-- Formas de Pagamento -->
+    <script src="../js/forma-pgto/formaPgtoService.js"></script>
+    <script src="../js/forma-pgto/editFormaPgtoController.js"></script>
+    <script src="../js/forma-pgto/listFormasPgtoController.js"></script>
+
+    <!-- Precos -->
+    <script src="../js/preco-item-cardapio/precoItemCardapioService.js"></script>
+    <script src="../js/preco-item-cardapio/editPrecoController.js"></script>
+    <script src="../js/preco-item-cardapio/listPrecosItemCardapioController.js"></script>
+    
+    <!-- Itens do Cardapio -->
+    <script src="../js/item-cardapio/itensCardapioService.js"></script>
+    <script src="../js/item-cardapio/searchItensCardapioController.js"></script>
+    <script src="../js/item-cardapio/listItensCardapioController.js"></script>
+    <script src="../js/item-cardapio/editItemCardapioController.js"></script>
+
+    <!-- Parceiro -->
+    <script src="../js/parceiro/parceiroService.js"></script>    
+    <script src="../js/parceiro/listParceirosController.js"></script>    
+    <script src="../js/parceiro/editParceiroController.js"></script>    
+
+    <!-- Sabor -->
+    <script src="../js/sabor/saborService.js"></script>    
+    <script src="../js/sabor/editSaborController.js"></script>    
+    <script src="../js/sabor/listSaboresController.js"></script>    
+
+    <!-- Tamanho -->
+    <script src="../js/tamanho/tamanhoService.js"></script>
+    <script src="../js/tamanho/editTamanhoController.js"></script>
+    <script src="../js/tamanho/listTamanhosController.js"></script>
+
+    <!-- Cardapio -->
+    <script src="../js/cardapio/cardapioService.js"></script>
+    <script src="../js/cardapio/editCardapioController.js"></script>
+    <script src="../js/cardapio/listCardapiosController.js"></script>
+
+    <!-- Pedido -->
+    <script src="../js/pedido/pedidoService.js"></script>    
+    <script src="../js/pedido/editPedidoController.js"></script>
+    <script src="../js/pedido/listPedidosController.js"></script>
+
+    <!-- Estabelecimento -->
+    <script src="../js/estabelecimento/estabelecimentoService.js"></script>    
+    <script src="../js/estabelecimento/editEstabelecimentoController.js"></script>
+    <script src="../js/estabelecimento/listEstabelecimentosController.js"></script>
+
+    <!-- Gambis -->
+    <script src="../js/homeController.js"></script>
+    <script src="../js/mainController.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/mascaraValidacao.js"></script>
+
+    <script>
+        setTimeout(function() {
+            document.getElementById('wrapper').style.display = 'block';
+        }, 1000);
+    </script>
+
+</body>
+</html>

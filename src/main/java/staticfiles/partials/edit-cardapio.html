@@ -1,0 +1,92 @@
+<!--  
+ * cheff.casa is a platform that aims to cover all the business process
+ * involved in operating a restaurant or a food delivery service. 
+ *
+ * Copyright (C) 2018  Laercio Metzner
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.  
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * For more information please visit http://cheff.casa
+ * or mail us via our e-mail contato@cheff.casa
+ * or even mail-me via my own personal e-mail laercio.metzner@gmail.com 
+ * 
+ -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Cardápio</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{isUpdate ? 'Editar' : 'Inserir'}} Cardápio
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form role="form" ng-submit="save()">
+
+                                <!-- Nome do Estabelecimento -->
+                                <div class="form-group" ng-hide="{{!isUpdate}}">
+                                    <label>Nome do Estabelecimento</label>
+                                    <input type="text" id="nomEstabelecimento" name="nomEstabelecimento" class="form-control" ng-model="cardapio.nomEstabelecimento" disabled>
+                                </div>
+
+                                <!-- Código do Cardapio -->
+                                <div class="form-group" ng-hide="{{!isUpdate}}">
+                                    <label>Código do Cardápio</label>
+                                    <input type="text" id="codCardapio" name="codCardapio" class="form-control" ng-model="cardapio.codCardapio" disabled>
+                                </div>
+
+                                <!-- Nome do Cardápio -->
+                                <div class="form-group">
+                                    <label>Nome do Cardápio</label>
+                                    <input type="text" id="nomCardapio" name="nomCardapio" class="form-control" ng-model="cardapio.nomCardapio">
+                                </div>
+
+                                <!-- Ordem -->
+                                <div class="form-group">
+                                    <label>Ordenação</label>
+                                    <input type="number" id="numOrdem" name="numOrdem" class="form-control" ng-model="cardapio.numOrdem">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="cardapio.indAtivo" id="indAtivo" name="indAtivo" ng-true-value="'S'" ng-false-value="'N'">Ativo
+                                        </label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-default">Salvar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+<!--
+    <div ng-hide="!isUpdate" style="text-align:center; vertical-align:middle">
+          <p><a href="#/listItensCardapio/{{cardapio.codEstabelecimento}}/{{cardapio.codCardapio}}">Itens do Cardápio &raquo;</a></p>
+    </div>
+-->

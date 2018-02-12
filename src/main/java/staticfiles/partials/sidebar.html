@@ -1,0 +1,169 @@
+<!--  
+ * cheff.casa is a platform that aims to cover all the business process
+ * involved in operating a restaurant or a food delivery service. 
+ *
+ * Copyright (C) 2018  Laercio Metzner
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.  
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * For more information please visit http://cheff.casa
+ * or mail us via our e-mail contato@cheff.casa
+ * or even mail-me via my own personal e-mail laercio.metzner@gmail.com 
+ * 
+ -->
+<!--
+<div class="col-sm-3 col-md-2 sidebar" ng-hide="!loggedIn">
+	<ul class="nav nav-sidebar">
+		<li><a href="#/listEstabelecimentos">Estabelecimentos</a></li>
+		<li><a href="#/searchCardapios">Cardápios</a></li>
+		<li><a href="#/searchItensCardapio">Itens do cardapio</a></li>
+		<li><a href="#/searchTamanhos">Tamanhos</a></li>
+		<li><a href="#/searchSabores">Sabores</a></li>
+		<li><a href="#/listParceiros">Meu Cadastro</a></li>
+	</ul>
+</div>
+
+
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="mainController">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar">xuxu</span>
+            <span class="icon-bar">pera</span>
+            <span class="icon-bar">uva</span>
+          </button>
+          <p class="navbar-brand">Project namee</p>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          
+          <p  class="navbar-brand navbar-right" ng-hide="!loggedIn">
+            
+            <button class="btn btn-danger" ng-click="logout()">Sair</button>
+          </p>
+        </div>
+      </div>
+    </nav>
+
+-->
+
+
+    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" layout-fill>
+      <header class="nav-header">
+        <md-toolbar  class="md-tall-3 md-hue-2">
+
+          <div layout="column" class="md-toolbar-tools-bottom inset">
+
+            <div  ng-hide="loggedIn">
+              <md-input-container md-theme="input" flex>
+                <label>Email</label>
+                <input ng-model="email" placeholder="Email">
+              </md-input-container>
+
+              <md-input-container md-theme="input" flex>
+                <label>Senha</label>
+                <input type="password" ng-model="password" class="ng-valid md-input ng-dirty ng-valid-parse ng-touched" tabindex="0" id="input_1" aria-invalid="false">
+              </md-input-container>
+              <a class="ng-scope" style="color: white" ng-click="signin()" ng-hide="loggedIn">Entrar</a>
+              <br>
+              <a style="color: white" href="#/editParceiro" ng-hide="loggedIn">Quero ser um parceiro</a>
+              <br>
+            </div>
+            <div ng-hide="!loggedIn">
+            <user-avatar></user-avatar>
+            <span></span>
+            <div>{{email}}</div>
+            <a style="color: white" ng-click="logout()">Sair</a>
+            </div>
+
+          </div>
+        </md-toolbar>
+      </header>
+    <md-list ng-hide="!loggedIn">
+      <md-item>
+        <a  href="#/listEstabelecimentos">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <!--
+            <div class="inset">
+              <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+            </div>
+            -->
+            <div class="inset">Estabelecimentos</div>
+          </md-item-content>
+        </a>
+      </md-item>
+      <md-item>
+        <a  href="#/searchCardapios">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <!--
+            <div class="inset">
+              <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+            </div>
+            -->
+            <div class="inset">Cardápios</div>
+          </md-item-content>
+        </a>
+      </md-item>
+      <md-item>
+        <a  href="#/searchItensCardapio">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <!--
+            <div class="inset">
+              <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+            </div>
+            -->
+            <div class="inset">Itens do cardapio</div>
+          </md-item-content>
+        </a>
+      </md-item>
+      <md-item>
+        <a  href="#/searchTamanhos">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <!--
+            <div class="inset">
+              <ng-md-icon icon="message"></ng-md-icon>
+            </div>
+            -->
+            <div class="inset">Tamanhos</div>
+          </md-item-content>
+        </a>
+      </md-item>
+      <md-item>
+        <a  href="#/searchSabores">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <!--
+            <div class="inset">
+              <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+            </div>
+            -->
+            <div class="inset">Sabores</div>
+          </md-item-content>
+        </a>
+      </md-item>
+      <md-divider></md-divider>
+      <!-- <md-subheader>Management</md-subheader> -->
+      <md-item>
+        <a href="#/listParceiros">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+          <!--
+            <div class="inset">
+              <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+            </div>
+            -->
+            <div class="inset">Meu Cadastro</div>
+          </md-item-content>
+        </a>
+      </md-item>
+    </md-list>
+    </md-sidenav>
